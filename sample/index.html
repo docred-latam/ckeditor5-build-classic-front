@@ -28,13 +28,18 @@
 
 <script src="../build/ckeditor.js"></script>
 <script>
-	ClassicEditor.create( document.querySelector( '#editor' ) )
-		.then( editor => {
+	ClassicEditor
+		.create( document.querySelector( '#editor' ), {
+			simpleUpload: {
+				uploadUrl: '/upload'
+			}
+		})
+		.then(editor => {
 			window.editor = editor;
-		} )
+		})
 		.catch( error => {
 			console.error( 'There was a problem initializing the editor.', error );
-		} );
+		});
 </script>
 
 </body>
