@@ -28,7 +28,11 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import TableProperties from '@ckeditor/ckeditor5-table/src/tableproperties';
+import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import SimpleUploadAdapterStrapi from './adapters/simpleuploadadapterstrapi';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -56,7 +60,11 @@ ClassicEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
-	TextTransformation
+	TableProperties,
+	TableCellProperties,
+	TextTransformation,
+	SimpleUploadAdapterStrapi,
+	Font
 ];
 
 // Editor configuration.
@@ -73,6 +81,10 @@ ClassicEditor.defaultConfig = {
 			'|',
 			'indent',
 			'outdent',
+			'fontSize',
+			'fontFamily',
+			'fontColor',
+			'fontBackgroundColor',
 			'|',
 			'imageUpload',
 			'blockQuote',
@@ -94,7 +106,14 @@ ClassicEditor.defaultConfig = {
 		contentToolbar: [
 			'tableColumn',
 			'tableRow',
-			'mergeTableCells'
+			'mergeTableCells',
+			'tableProperties',
+			'tableCellProperties'
+		]
+	},
+	fontFamily: {
+		options: [
+			'default'
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
