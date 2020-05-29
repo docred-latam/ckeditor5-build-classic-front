@@ -34,6 +34,7 @@ import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperti
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import Font from '@ckeditor/ckeditor5-font/src/font';
 import SimpleUploadAdapterStrapi from './adapters/simpleuploadadapterstrapi';
+import AutoLink from './plugins/autolink/autolink';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -66,7 +67,8 @@ ClassicEditor.builtinPlugins = [
 	TableCellProperties,
 	TextTransformation,
 	SimpleUploadAdapterStrapi,
-	Font
+	Font,
+	AutoLink
 ];
 
 // Editor configuration.
