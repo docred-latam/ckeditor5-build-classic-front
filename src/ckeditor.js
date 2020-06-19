@@ -35,6 +35,7 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 import Font from '@ckeditor/ckeditor5-font/src/font';
 import SimpleUploadAdapterStrapi from './adapters/simpleuploadadapterstrapi';
 import AutoLink from './plugins/autolink/autolink';
+import Poll from './plugins/polls/poll';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -68,7 +69,8 @@ ClassicEditor.builtinPlugins = [
 	TextTransformation,
 	SimpleUploadAdapterStrapi,
 	Font,
-	AutoLink
+	AutoLink,
+	Poll
 ];
 
 // Editor configuration.
@@ -90,6 +92,7 @@ ClassicEditor.defaultConfig = {
 			'fontColor',
 			'fontBackgroundColor',
 			'|',
+			'poll',
 			'imageUpload',
 			'blockQuote',
 			'insertTable',
@@ -129,5 +132,13 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
-	language: 'en'
+	language: 'en',
+	mediaEmbed: {
+		extraProviders: [
+			{
+				name: 'iframe',
+				url: /^/
+			}
+		]
+	}
 };
