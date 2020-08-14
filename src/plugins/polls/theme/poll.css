@@ -12,6 +12,7 @@
 	text-align: center;
 	font-size: 2rem;
 	font-weight: bold;
+	display: block;
 }
 
 .poll::selection {

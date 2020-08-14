@@ -39,16 +39,11 @@ export default class PollEditing extends Plugin {
 	_defineSchema() {
 		const schema = this.editor.model.schema;
 
+		// Configure the schema.
 		schema.register( 'poll', {
-			// Allow wherever text is allowed:
-			allowWhere: '$text',
-
-			// The placeholder will act as an inline node:
-			isInline: true,
-
-			// The inline widget is self-contained so it cannot be split by the caret and can be selected:
 			isObject: true,
-
+			isBlock: true,
+			allowWhere: [ '$block', '$text' ],
 			allowAttributes: [ 'name', 'data-id' ]
 		} );
 	}
@@ -56,23 +51,11 @@ export default class PollEditing extends Plugin {
 	_defineConverters() {
 		const conversion = this.editor.conversion;
 
-		conversion.for( 'upcast' ).elementToElement( {
-			view: {
-				name: 'div',
-				classes: [ 'poll' ]
-			},
-			model: ( viewElement, modelWriter ) => {
-				// Extract the "name" from "{name}".
-				const name = viewElement.getChild( 0 ).data.slice( 1, -1 );
-				return modelWriter.createElement( 'poll', { name } );
-			}
-		} );
-
 		// Helper method for both downcast converters.
 		const createPlaceholderView = ( modelItem, viewWriter ) => {
-			const id = modelItem.getAttribute( 'data-id' );
+			const id = modelItem.getAttribute( 'data-id' ) || 'undefined';
 
-			const pollView = viewWriter.createContainerElement( 'div', {
+			const pollView = viewWriter.createContainerElement( 'figure', {
 				class: 'poll',
 				'data-id': id
 			} );
@@ -83,6 +66,17 @@ export default class PollEditing extends Plugin {
 
 			return pollView;
 		};
+
+		conversion.elementToElement( {
+			view: {
+				name: 'figure',
+				classes: 'poll'
+			},
+			model: ( viewElement, modelWriter ) => {
+				const id = viewElement.getChild( 0 ).parent.getAttribute( 'data-id' );
+				return modelWriter.createElement( 'poll', { 'data-id': id } );
+			}
+		} );
 
 		conversion.for( 'editingDowncast' ).elementToElement( {
 			model: 'poll',

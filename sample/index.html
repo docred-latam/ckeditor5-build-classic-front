@@ -15,23 +15,25 @@
 <h1>CKEditor 5 – classic editor build – development sample</h1>
 
 <div id="editor">
-	<p></p>
+	<p><figure class="poll" data-id="5">{ Poll ID: 5}</figure></p>
 </div>
 
+<script src="../node_modules/@ckeditor/ckeditor5-inspector/build/inspector.js"></script>
 <script src="../build/ckeditor.js"></script>
 <script>
 	ClassicEditor
-		.create( document.querySelector( '#editor' ), {
-			simpleUpload: {
-				uploadUrl: '/upload'
-			}
-		})
-		.then(editor => {
-			window.editor = editor;
-		})
-		.catch( error => {
-			console.error( 'There was a problem initializing the editor.', error );
-		});
+			.create(document.querySelector('#editor'), {
+				simpleUpload: {
+					uploadUrl: '/upload'
+				}
+			})
+			.then(editor => {
+				CKEditorInspector.attach( editor );
+				window.editor = editor;
+			})
+			.catch(error => {
+				console.error('There was a problem initializing the editor.', error);
+			});
 </script>
 
 </body>

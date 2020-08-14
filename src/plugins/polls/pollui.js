@@ -21,7 +21,7 @@ export default class PollUI extends Plugin {
 			this.listenTo( view, 'execute', () => {
 				// eslint-disable-next-line
 				const pollId = prompt( 'Poll ID' );
-				if ( isNaN( Number( pollId ) ) ) {
+				if ( !pollId || isNaN( Number( pollId ) ) ) {
 					// eslint-disable-next-line
 					alert( 'El ID no es valido' );
 					return null;
