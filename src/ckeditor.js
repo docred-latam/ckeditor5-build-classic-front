@@ -36,6 +36,7 @@ import Font from '@ckeditor/ckeditor5-font/src/font';
 import SimpleUploadAdapterStrapi from './adapters/simpleuploadadapterstrapi';
 import AutoLink from './plugins/autolink/autolink';
 import Poll from './plugins/polls/poll';
+import ImageViaUrlEmbed from './plugins/imageviaurl/imageviaurlembed';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -70,7 +71,8 @@ ClassicEditor.builtinPlugins = [
 	SimpleUploadAdapterStrapi,
 	Font,
 	AutoLink,
-	Poll
+	Poll,
+	ImageViaUrlEmbed
 ];
 
 // Editor configuration.
@@ -93,6 +95,7 @@ ClassicEditor.defaultConfig = {
 			'fontBackgroundColor',
 			'|',
 			'poll',
+			'imageViaUrlEmbed',
 			'imageUpload',
 			'blockQuote',
 			'insertTable',
@@ -107,6 +110,7 @@ ClassicEditor.defaultConfig = {
 			'imageTextAlternative',
 			'|',
 			'imageStyle:alignLeft',
+			'imageStyle:alignCenter',
 			'imageStyle:full',
 			'imageStyle:alignRight'
 		],
@@ -135,9 +139,13 @@ ClassicEditor.defaultConfig = {
 	language: 'en',
 	mediaEmbed: {
 		extraProviders: [
+			// {
+			// 	name: 'img',
+			// 	url: /^httaps?:\/\/.*(.png|.jpg|.gif)$/ig
+			// },
 			{
 				name: 'iframe',
-				url: /^/
+				url: /^http(s):\/\/.*(?<!png|jpg|gif)$/ig
 			}
 		]
 	}
