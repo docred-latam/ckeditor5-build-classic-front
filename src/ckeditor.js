@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /**
  * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
@@ -37,6 +38,7 @@ import SimpleUploadAdapterStrapi from './adapters/simpleuploadadapterstrapi';
 import AutoLink from './plugins/autolink/autolink';
 import Poll from './plugins/polls/poll';
 import ImageViaUrlEmbed from './plugins/imageviaurl/imageviaurlembed';
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -72,7 +74,8 @@ ClassicEditor.builtinPlugins = [
 	Font,
 	AutoLink,
 	Poll,
-	ImageViaUrlEmbed
+	ImageViaUrlEmbed,
+	Base64UploadAdapter
 ];
 
 // Editor configuration.
@@ -114,12 +117,7 @@ ClassicEditor.defaultConfig = {
 			'imageStyle:full',
 			'imageStyle:alignRight'
 		],
-		styles: [
-			'full',
-			'alignLeft',
-			'alignCenter',
-			'alignRight'
-		]
+		styles: [ 'full', 'alignLeft', 'alignCenter', 'alignRight' ]
 	},
 	table: {
 		contentToolbar: [
@@ -131,9 +129,7 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 	fontFamily: {
-		options: [
-			'default'
-		]
+		options: [ 'default' ]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en',
@@ -145,7 +141,7 @@ ClassicEditor.defaultConfig = {
 			// },
 			{
 				name: 'iframe',
-				url: /^http(s):\/\/.*(?<!png|jpg|gif)$/ig
+				url: /^http(s):\/\/.*(?<!png|jpg|gif)$/gi
 			}
 		]
 	}
