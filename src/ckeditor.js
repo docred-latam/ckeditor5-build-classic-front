@@ -34,6 +34,8 @@ import TableProperties from '@ckeditor/ckeditor5-table/src/tableproperties';
 import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import Font from '@ckeditor/ckeditor5-font/src/font';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
 import SimpleUploadAdapterStrapi from './adapters/simpleuploadadapterstrapi';
 import AutoLink from './plugins/autolink/autolink';
 import Poll from './plugins/polls/poll';
@@ -75,7 +77,9 @@ ClassicEditor.builtinPlugins = [
 	AutoLink,
 	Poll,
 	ImageViaUrlEmbed,
-	Base64UploadAdapter
+	Base64UploadAdapter,
+	Subscript,
+	Superscript
 ];
 
 // Editor configuration.
